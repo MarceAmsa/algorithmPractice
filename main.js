@@ -210,9 +210,9 @@ myFunctionB();
 
             var result = 1;
 
-            for (var i = 0; i <= tableNumber; i ++) {
+            for (var i = 0; i <= tableNumber; i++) {
 
-                if (tableNumber > 12){
+                if (tableNumber > 12) {
                     document.getElementById("table").innerHTML = "Sorry, number is too high";
                 } else {
                     result = tableNumber * i;
@@ -221,16 +221,58 @@ myFunctionB();
 
 
                     var x = document.getElementById("tableNumbers")
-                    var t = document.createTextNode( i + "x" + tableNumber + "=" + result + " ");
+                    var t = document.createTextNode(i + "x" + tableNumber + "=" + result + " ");
                     x.appendChild(t);
                 }
-                
+
             }
 
 
         };
 
     }
+
     multTable();
+
+    function primeNumbers() {
+
+        document.getElementById("primeNumbers").onclick = function () {
+
+            anyNumber = document.getElementById("myNumber").value;
+            document.getElementById("myNumber").innerHTML = "anyNumber";
+
+            var result = 0;
+            var prime = 0;
+
+            for (var i = 1; i <= anyNumber; i++) {
+
+                var x = anyNumber / i;
+                var y = i % 1;
+                var intNumber = Number.isInteger(x);
+
+                if (intNumber === true) {
+
+                    var dividends = i;
+                    intNumber = false;
+                    console.log("true" + dividends);
+
+                    if (dividends === 1 || dividends === parseInt(anyNumber)){
+                        console.log("closer to prime");
+                    } else {
+                        console.log("not prime number")
+
+                    }
+
+                } else {
+                    console.log("false");
+                }
+            }
+
+        }
+
+    }
+
+    primeNumbers();
+
 
 })();
