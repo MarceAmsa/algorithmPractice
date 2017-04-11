@@ -92,52 +92,145 @@ myFunctionB();
 
     function count(numbers) {
 
-        var newNumber = 12;
-        document.getElementById("changeNumber").onclick = function () {
-
-            newNumber = document.getElementById("myNumber").value;
-            document.getElementById("myNumber").innerHTML = "newNumber";
-            console.log(newNumber);
-
-            return newNumber;
-        };
-
-
-        numbers(
-
-
-        );
-
+        numbers();
 
     }
 
     count(
         function () {
 
-            sumNumber = document.getElementById("myNumber").value;
-            document.getElementById("click").onclick = function () {
+
+            document.getElementById("changeNumber").onclick = function () {
+
+                sumNumber = document.getElementById("myNumber").value;
+                document.getElementById("myNumber").innerHTML = "sumNumber";
+
                 console.log(sumNumber);
                 var result = 0;
+                var addThree = 0;
+                var addFive = 0;
                 for (var i = 1; i <= sumNumber; i++) {
 
                     result += i;
-                    // console.log(result);
 
-                    var x = result %3;
-                    var y = result %5;
+                    var x = i % 3;
+                    var y = i % 5;
 
                     if (x === 0) {
-                        console.log(result)
+
+                        addThree += i;
+                        // result = addThree;
+
+                        // console.log(addThree)
                     } else if (y === 0) {
-                        console.log(result)
+                        addFive += i;
+                        // console.log(addFive)
                     } else {
 
                     }
+                    // console.log(result[i++]);
                 }
+
+                document.getElementById("botTextChange").innerHTML = "The sum of units multiples of three is " + addThree;
+
+                document.getElementById("botTextChange1").innerHTML = "The sum of units multiples of five is " + addFive;
+
+                document.getElementById("botTextChange2").innerHTML = "The sum of all units " + result;
+                //
+                // console.log("The sum of units multiples of three is " + addThree);
+                // console.log("The sum of units multiples of five is " + addFive);
+                // console.log("The sum of all units is " + result);
+
             }
         }
     );
 
 
+    function twoOptions(sum, product) {
+
+
+
+        // console.log(sumNumber);
+
+        sum();
+        product();
+
+    }
+
+
+    twoOptions(
+        function () {
+            document.getElementById("sumElements").onclick = function () {
+
+                sumNumber = document.getElementById("myNumber").value;
+                document.getElementById("myNumber").innerHTML = "sumNumber";
+                var result = 0;
+                for (var i = 1; i <= sumNumber; i++) {
+
+                    result += i;
+
+                }
+                document.getElementById("botTextChange").innerHTML = "";
+                document.getElementById("botTextChange1").innerHTML = "";
+                document.getElementById("botTextChange2").innerHTML = "The sum of all units is " + result;
+                console.log(result);
+            }
+        },
+
+        function () {
+
+            document.getElementById("multiplyElement").onclick = function () {
+
+                sumNumber = document.getElementById("myNumber").value;
+                document.getElementById("myNumber").innerHTML = "sumNumber";
+                var result = 1;
+                for (var i = 1; i <= sumNumber; i++) {
+
+                    result *= i;
+
+                }
+                document.getElementById("botTextChange").innerHTML = "";
+                document.getElementById("botTextChange1").innerHTML = "";
+                document.getElementById("botTextChange2").innerHTML = "The mult of all units is " + result;
+                console.log(result);
+            }
+
+
+        }
+    );
+
+    function multTable() {
+
+        document.getElementById("multiplyTable").onclick = function () {
+
+            document.getElementById("tableNumbers").innerHTML = " ";
+            tableNumber = document.getElementById("myNumber").value;
+            document.getElementById("myNumber").innerHTML = "tableNumber";
+
+
+            var result = 1;
+
+            for (var i = 0; i <= tableNumber; i ++) {
+
+                if (tableNumber > 12){
+                    document.getElementById("table").innerHTML = "Sorry, number is too high";
+                } else {
+                    result = tableNumber * i;
+                    // document.getElementById("table").innerHTML = result; //it overwrites itself
+                    console.log(result);
+
+
+                    var x = document.getElementById("tableNumbers")
+                    var t = document.createTextNode( i + "x" + tableNumber + "=" + result + " ");
+                    x.appendChild(t);
+                }
+                
+            }
+
+
+        };
+
+    }
+    multTable();
 
 })();
