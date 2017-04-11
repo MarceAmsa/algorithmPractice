@@ -3,7 +3,6 @@
  */
 
 
-
 // function declaration
 function myFunctionA() {
     return 'A';
@@ -52,227 +51,199 @@ myFunctionB();
 
     sayHello(
         function () {
-
             var userName = 'Person';
             document.getElementById("myText").innerHTML = userName;
 
             return userName;
-
             // console.log(userName);
-
         },
         ', how you doing?'
     );
 
 
-    document.getElementById("click").onclick = function () {
-        console.log('you clicked');
+    /**
+     * Exercices 1 to 3
+     */
+    document.getElementById("click").addEventListener('click', greet);
 
-        function greetingAlice() {
+    function greet() {
+        var userName = document.getElementById("myText").value;
+        var greeting = 'Hey! ' + userName + ' how you doing?';
 
-            var userName = document.getElementById("myText").value;
-            var greeting = 'Hey! ' + userName + ' how you doing?';
-
-
-            if (userName === "Alice" || userName === "Bob") {
-                document.getElementById("botText2").innerHTML = greeting;
-
-            } else {
-                document.getElementById("botText2").innerHTML = "BOO!";
-                // document.getElementById("botText2").innerHTML = greeting;
-
-            }
+        if (userName.toUpperCase() === "Alice".toUpperCase() || userName.toUpperCase() === "Bob".toUpperCase()) {
+            document.getElementById("botText2").innerHTML = greeting;
+        } else {
+            document.getElementById("botText2").innerHTML = "BOO!";
         }
+    }
 
-        greetingAlice();
+
+    /**
+     *
+     * Exercices 4 and 5
+     */
+    document.getElementById("changeNumber").onclick = function () {
+
+        var sumNumber = document.getElementById("myNumber").value;
+        document.getElementById("myNumber").innerHTML = "sumNumber";
+
+        var calculationResult = doCalculation(sumNumber);
+
+        document.getElementById("botTextChange").innerHTML = "The sum of units multiples of three is " + calculationResult.addThree;
+
+        document.getElementById("botTextChange1").innerHTML = "The sum of units multiples of five is " + calculationResult.addFive;
+
+        document.getElementById("botTextChange2").innerHTML = "The sum of all units " + calculationResult.result;
+        //
+        // console.log("The sum of units multiples of three is " + addThree);
+        // console.log("The sum of units multiples of five is " + addFive);
+        // console.log("The sum of all units is " + result);
+
     };
 
 
-// Numbers functions algorithm
+    function doCalculation(sumNumber){
+        var result = 0;
+        var addThree = 0;
+        var addFive = 0;
+        var multiplication = 1;
+        for (var i = 1; i <= sumNumber; i++) {
 
-    function count(numbers) {
+            result += i;
+            multiplication *= i;
 
-        numbers();
+            var x = i % 3;
+            var y = i % 5;
 
-    }
-
-    count(
-        function () {
-
-
-            document.getElementById("changeNumber").onclick = function () {
-
-                sumNumber = document.getElementById("myNumber").value;
-                document.getElementById("myNumber").innerHTML = "sumNumber";
-
-                console.log(sumNumber);
-                var result = 0;
-                var addThree = 0;
-                var addFive = 0;
-                for (var i = 1; i <= sumNumber; i++) {
-
-                    result += i;
-
-                    var x = i % 3;
-                    var y = i % 5;
-
-                    if (x === 0) {
-
-                        addThree += i;
-                        // result = addThree;
-
-                        // console.log(addThree)
-                    } else if (y === 0) {
-                        addFive += i;
-                        // console.log(addFive)
-                    } else {
-
-                    }
-                    // console.log(result[i++]);
-                }
-
-                document.getElementById("botTextChange").innerHTML = "The sum of units multiples of three is " + addThree;
-
-                document.getElementById("botTextChange1").innerHTML = "The sum of units multiples of five is " + addFive;
-
-                document.getElementById("botTextChange2").innerHTML = "The sum of all units " + result;
-                //
-                // console.log("The sum of units multiples of three is " + addThree);
-                // console.log("The sum of units multiples of five is " + addFive);
-                // console.log("The sum of all units is " + result);
-
+            if (x === 0) {
+                addThree += i;
+            } else if (y === 0) {
+                addFive += i;
             }
         }
-    );
+
+        return {
+            result: result,
+            addThree: addThree,
+            addFive: addFive,
+            multiplication: multiplication
+        }
+    };
+
+    /**
+     * Exercises 6
+     */
+
+    document.getElementById("sumElements").onclick = function () {
+        sumNumber = document.getElementById("myNumber").value;
+        document.getElementById("myNumber").innerHTML = "sumNumber";
+        var result = 0;
+        for (var i = 1; i <= sumNumber; i++) {
+
+            result += i;
+
+        }
+        document.getElementById("botTextChange").innerHTML = "";
+        document.getElementById("botTextChange1").innerHTML = "";
+        document.getElementById("botTextChange2").innerHTML = "The sum of all units is " + result;
+        console.log(result);
+    };
+
+    document.getElementById("multiplyElement").onclick = function () {
+
+        sumNumber = document.getElementById("myNumber").value;
+        document.getElementById("myNumber").innerHTML = "sumNumber";
+        var result = 1;
+        for (var i = 1; i <= sumNumber; i++) {
+
+            result *= i;
+
+        }
+        document.getElementById("botTextChange").innerHTML = "";
+        document.getElementById("botTextChange1").innerHTML = "";
+        document.getElementById("botTextChange2").innerHTML = "The mult of all units is " + result;
+        console.log(result);
+    };
 
 
-    function twoOptions(sum, product) {
+    /**
+     * Exercise 7
+     */
+    document.getElementById("multiplyTable").onclick = function () {
 
+        document.getElementById("tableNumbers").innerHTML = " ";
+        tableNumber = document.getElementById("myNumber").value;
+        document.getElementById("myNumber").innerHTML = "tableNumber";
 
+        var x = document.getElementById("tableNumbers");
 
-        // console.log(sumNumber);
+        var result = 1;
 
-        sum();
-        product();
-
-    }
-
-
-    twoOptions(
-        function () {
-            document.getElementById("sumElements").onclick = function () {
-
-                sumNumber = document.getElementById("myNumber").value;
-                document.getElementById("myNumber").innerHTML = "sumNumber";
-                var result = 0;
-                for (var i = 1; i <= sumNumber; i++) {
-
-                    result += i;
-
-                }
-                document.getElementById("botTextChange").innerHTML = "";
-                document.getElementById("botTextChange1").innerHTML = "";
-                document.getElementById("botTextChange2").innerHTML = "The sum of all units is " + result;
+        for (var i = 0; i <= tableNumber; i++) {
+            if (tableNumber > 12) {
+                document.getElementById("table").innerHTML = "Sorry, number is too high";
+            } else {
+                result = tableNumber * i;
                 console.log(result);
+                x.innerHTML += i + "x" + tableNumber + "=" + result + " "
             }
-        },
+        }
+    };
 
-        function () {
 
-            document.getElementById("multiplyElement").onclick = function () {
+    /**
+     * Excercise 8
+     */
+    document.getElementById("primeNumbers").onclick = function () {
 
-                sumNumber = document.getElementById("myNumber").value;
-                document.getElementById("myNumber").innerHTML = "sumNumber";
-                var result = 1;
-                for (var i = 1; i <= sumNumber; i++) {
+        document.getElementById("prime").innerHTML = " ";
+        inputNumber = document.getElementById("myNumber").value;
 
-                    result *= i;
+        var isCurrentNumberPrime;
+        var x = document.getElementById("prime");
 
-                }
-                document.getElementById("botTextChange").innerHTML = "";
-                document.getElementById("botTextChange1").innerHTML = "";
-                document.getElementById("botTextChange2").innerHTML = "The mult of all units is " + result;
-                console.log(result);
-            }
+        for( var numberToTest = 1 ; numberToTest <= inputNumber ; numberToTest++ ) {
 
+           isCurrentNumberPrime =  isMyNumberPrime(numberToTest);
+           console.log('Is '+numberToTest+' prime ? '+ isCurrentNumberPrime);
+
+           if (isCurrentNumberPrime === true) {
+
+               x.innerHTML += " " + numberToTest;
+
+           }
 
         }
-    );
+    };
 
-    function multTable() {
+    function isMyNumberPrime(myNumber) {
+        var isNumberPrime = true;
+        for (var i = 2; i < myNumber; i++) {
+            var x = myNumber % i;
 
-        document.getElementById("multiplyTable").onclick = function () {
-
-            document.getElementById("tableNumbers").innerHTML = " ";
-            tableNumber = document.getElementById("myNumber").value;
-            document.getElementById("myNumber").innerHTML = "tableNumber";
-
-
-            var result = 1;
-
-            for (var i = 0; i <= tableNumber; i++) {
-
-                if (tableNumber > 12) {
-                    document.getElementById("table").innerHTML = "Sorry, number is too high";
-                } else {
-                    result = tableNumber * i;
-                    // document.getElementById("table").innerHTML = result; //it overwrites itself
-                    console.log(result);
-
-
-                    var x = document.getElementById("tableNumbers")
-                    var t = document.createTextNode(i + "x" + tableNumber + "=" + result + " ");
-                    x.appendChild(t);
-                }
-
+            if (x === 0) {
+                isNumberPrime = false;
+                break;
             }
-
-
-        };
+        }
+        return isNumberPrime
 
     }
 
-    multTable();
+    /**
+     * Excercise 9
+     */
 
-    function primeNumbers() {
+    document.getElementById("guessFunction").addEventListener('click', guess);
 
-        document.getElementById("primeNumbers").onclick = function () {
+    function guess() {
 
-            anyNumber = document.getElementById("myNumber").value;
-            document.getElementById("myNumber").innerHTML = "anyNumber";
 
-            var result = 0;
-            var prime = 0;
+        var x = document.getElementById("random");
+        x.innerHTML =  Math.floor ((Math.random() * 100) + 1);
 
-            for (var i = 1; i <= anyNumber; i++) {
-
-                var x = anyNumber / i;
-                var y = i % 1;
-                var intNumber = Number.isInteger(x);
-
-                if (intNumber === true) {
-
-                    var dividends = i;
-                    intNumber = false;
-                    console.log("true" + dividends);
-
-                    if (dividends === 1 || dividends === parseInt(anyNumber)){
-                        console.log("closer to prime");
-                    } else {
-                        console.log("not prime number")
-
-                    }
-
-                } else {
-                    console.log("false");
-                }
-            }
-
-        }
-
+        
     }
-
-    primeNumbers();
 
 
 })();
