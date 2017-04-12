@@ -22,6 +22,7 @@
 
     <p id="click">Next</p>
 
+    <h3>Number contents</h3>
 
     <input type="number" id="myNumber" value= "12" />
     <input type="submit" id="changeNumber" value="Load_Number_Data"/>
@@ -51,10 +52,26 @@
 
     <p id="prime"></p>
 
-    <button id = "guessFunction">Generate random Number</button>
-    <p id="random"></p>
-    <input type="number" id="guessNumber" value=""/>
+    <h3>Guessing game</h3>
+    <button id = "numberToGuess">Generate random Number</button>
+    <p id="randomGenerated"> Click the button!</p>
 
+    <input type="number" id="guessNumber" value=""/>
+    <button id = "amIRight">Check if you're right!</button>
+    <p id = "guessMessages"></p>
+
+    <h3>Leap year</h3>
+    <input type="submit" id="leapYears" value="SeeNext20LeapYears"/>
+    <p id = "oneLeapYear"></p>
+
+    <h3>Lists and Strings</h3>
+    <input type="submit" id="longestElement" value="LongestElementFromArray"/>
+    <p id = "longestElementInArray"></p>
+
+
+    <input type="submit" id="reverseList" value="ReverseList"/>
+
+    <input type="submit" id="searchElement" value="Search for Mitsubishi"/>
 </div>
 
 
@@ -62,4 +79,5 @@
 
 
 <script type="text/javascript" src="./main.js"></script>
+<script type="text/javascript" src="./lists_exercises.js"></script>
 </html>

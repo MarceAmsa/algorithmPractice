@@ -102,7 +102,7 @@ myFunctionB();
     };
 
 
-    function doCalculation(sumNumber){
+    function doCalculation(sumNumber) {
         var result = 0;
         var addThree = 0;
         var addFive = 0;
@@ -202,16 +202,16 @@ myFunctionB();
         var isCurrentNumberPrime;
         var x = document.getElementById("prime");
 
-        for( var numberToTest = 1 ; numberToTest <= inputNumber ; numberToTest++ ) {
+        for (var numberToTest = 1; numberToTest <= inputNumber; numberToTest++) {
 
-           isCurrentNumberPrime =  isMyNumberPrime(numberToTest);
-           console.log('Is '+numberToTest+' prime ? '+ isCurrentNumberPrime);
+            isCurrentNumberPrime = isMyNumberPrime(numberToTest);
+            console.log('Is ' + numberToTest + ' prime ? ' + isCurrentNumberPrime);
 
-           if (isCurrentNumberPrime === true) {
+            if (isCurrentNumberPrime === true) {
 
-               x.innerHTML += " " + numberToTest;
+                x.innerHTML += " " + numberToTest;
 
-           }
+            }
 
         }
     };
@@ -234,16 +234,165 @@ myFunctionB();
      * Excercise 9
      */
 
-    document.getElementById("guessFunction").addEventListener('click', guess);
 
-    function guess() {
-
-
-        var x = document.getElementById("random");
-        x.innerHTML =  Math.floor ((Math.random() * 100) + 1);
-
-        
+    // Generates the random number to guess in the future
+    document.getElementById("numberToGuess").addEventListener("click", generateNumber);
+    function generateNumber () {
+        // Is not within a variable so it can be reached globally, for the isUserRight function
+        numberToGuess = Math.floor((Math.random() * 100) + 1);
+        console.log("number generated " + numberToGuess);
+        document.getElementById("randomGenerated").innerHTML= "Random number generated, guess!";
+        return numberToGuess;
     }
 
+
+    // Checks if the user is right and counts the amount of tries
+    document.getElementById("amIRight").addEventListener("click", isUserRight);
+    var numberOfInputs = 0;
+    var previousValue = null;
+
+    function isUserRight() {
+
+        var y = parseInt(document.getElementById("guessNumber").value); //User input
+        var z = document.getElementById("guessMessages");
+
+        if( previousValue && previousValue === y) { //if previousValue is different from null and not equal to Y
+            z.innerHTML= "Attemp number " + numberOfInputs + "failed";
+            console.log('Not counting');
+
+        } else {
+            previousValue = y; //takes the value from the input field and inserts it into Previous Value
+            numberOfInputs += 1;
+            console.log ('Attempt number' + numberOfInputs);
+
+            if ( y < numberToGuess) {
+                z.innerHTML = "Your number is too LOW";
+                console.log ("Your number is too low")
+
+            } else if (y > numberToGuess) {
+                z.innerHTML = "Your number is too HIGH";
+                console.log ("Your number is too high")
+
+            }  else if (y === numberToGuess){
+                z.innerHTML= "CONGRATS! you don't suck, got it at the " + numberOfInputs + " try";
+                document.getElementById("randomGenerated").innerHTML= "You guessed generate a new none";
+                numberOfInputs = 0;
+                previousValue = null; //reset previous value
+            }
+
+             if (numberOfInputs === 5 && y !== numberToGuess) { // if it's higher and not accurate to numbertoGuess
+                z.innerHTML= "GAME OVER";
+                numberOfInputs = 0;
+                previousValue = null;
+                document.getElementById("randomGenerated").innerHTML= "Generated new number";
+                document.getElementById("guessNumber").innerHTML = '';
+            }
+        }
+
+
+    }
+
+
+    /**
+     * Excercise 10: Leap years
+     */
+
+    document.getElementById("leapYears").addEventListener("click", leapYear);
+    function leapYear() {
+
+        var numberYears = 20;
+        x = 2016;
+        i = 1;
+
+        while ( i < numberYears){
+            nextLeapYear = x+=4;
+            i++;
+            document.getElementById("oneLeapYear").innerHTML += "   " + nextLeapYear + "<br>";
+            console.log(nextLeapYear);
+
+        }
+    }
+
+
+    /**
+     * Excercise 1: Lists and strings, check longest element in array.
+     */
+
+    //Array created manually
+    cars = ["Volvo", "Volkswagen", "Mercedes-Benz", "Audi", "Toyota", "Mitsubishi"];
+
+    document.getElementById("longestElement").addEventListener("click", longestElementInArray);
+    function longestElementInArray () {
+
+
+
+        // var defined to save previous elements and compare sizes
+        var largestElement = null;
+        var element;
+        var previousElement = 0;
+
+        for (i = 0; i < cars.length; i++) {
+            element = cars[i];
+
+            // if defines previous element to 0, otherwise is not posible to compare give i[0] doesn't
+            // have a previous element
+            if (i === 0) {
+                previousElement = "";
+            } else {
+                previousElement = largestElement;
+            }
+
+
+            if (element.length > previousElement.length) {
+                largestElement = element; //replaces largest element if actual is larger.
+            }
+        }
+
+        document.getElementById("longestElementInArray").innerHTML = largestElement;
+
+        return largestElement;
+
+    }
+
+
+    /**
+     * Excercise 2: Reverse Array
+     */
+
+    document.getElementById("reverseList").addEventListener("click", reverseList);
+    function reverseList () {
+        cars.reverse();
+        console.log(cars);
+        return cars;
+    }
+
+
+    /**
+     * Excercise 3: Find element in array
+     */
+
+    document.getElementById("searchElement").addEventListener("click", searchElement);
+
+    function searchElement() {
+
+        searchedElement = 'Mitsubishi';
+
+        for (i = 0; i < cars.length; i++) {
+            element = cars[i];
+
+            // if defines previous element to 0, otherwise is not posible to compare give i[0] doesn't
+            // have a previous element
+            if (element === searchedElement) {
+                result = "It contains the element"
+                console.log("Bingo " + result);
+            } else {
+                result = "there's NO element";
+                console.log(result);
+            }
+
+        }
+
+        return result;
+    }
 
 })();
