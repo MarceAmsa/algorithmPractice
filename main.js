@@ -319,7 +319,7 @@ myFunctionB();
      */
 
     //Array created manually
-    cars = ["Volvo", "Volkswagen", "Mercedes-Benz", "Audi", "Toyota", "Mitsubishi"];
+    cars = [ "Volvo", "Volkswagen", "Mercedes-Benz", "Audi", "Toyota", "Mitsubishi"];
 
     document.getElementById("longestElement").addEventListener("click", longestElementInArray);
     function longestElementInArray () {
@@ -327,20 +327,17 @@ myFunctionB();
 
 
         // var defined to save previous elements and compare sizes
-        var largestElement = null;
+        var largestElement = '';
         var element;
-        var previousElement = 0;
+        var previousElement = "";
 
         for (i = 0; i < cars.length; i++) {
             element = cars[i];
 
             // if defines previous element to 0, otherwise is not posible to compare give i[0] doesn't
             // have a previous element
-            if (i === 0) {
-                previousElement = "";
-            } else {
-                previousElement = largestElement;
-            }
+
+            previousElement = largestElement;
 
 
             if (element.length > previousElement.length) {
@@ -349,9 +346,7 @@ myFunctionB();
         }
 
         document.getElementById("longestElementInArray").innerHTML = largestElement;
-
         return largestElement;
-
     }
 
 
@@ -360,10 +355,13 @@ myFunctionB();
      */
 
     document.getElementById("reverseList").addEventListener("click", reverseList);
+
     function reverseList () {
         cars.reverse();
         console.log(cars);
+        document.getElementById("searchResult").innerHTML = cars;
         return cars;
+
     }
 
 
@@ -383,7 +381,7 @@ myFunctionB();
             // if defines previous element to 0, otherwise is not posible to compare give i[0] doesn't
             // have a previous element
             if (element === searchedElement) {
-                result = "It contains the element"
+                result = "It contains the element";
                 console.log("Bingo " + result);
             } else {
                 result = "there's NO element";
@@ -392,7 +390,56 @@ myFunctionB();
 
         }
 
+        document.getElementById("searchResult").innerHTML = "It exists";
         return result;
     }
+
+
+    /**
+     * Excercise 4: Returns elements on odd positions in a list
+     */
+
+
+    document.getElementById("oddElements").addEventListener("click", oddElements);
+
+    function oddElements () {
+
+        for (i=0; i < cars.length; i ++) {
+
+            var x = i % 2;
+
+            if (x === 0){
+                console.log(cars[i]);
+                document.getElementById("showOddElements").innerHTML += " " + cars[i] + " ";
+            }
+
+        }
+    }
+
+    /**
+     * Excercise 5: Compute running total of a list
+     */
+        pal = ['acer', 'kayak', 'madam', 'motor','redder', 'alula', 'elle', 'casa'];
+
+        for (i = pal.length-1; i >= 0 ; i -- ){
+
+            console.log(pal[i]);
+            var originalWord = pal[i].split('');
+            var reversedWord = pal[i].split('').reverse();
+
+            var x = originalWord.toString();
+            var y = reversedWord.toString();
+
+
+            if (x === y) {
+                console.log ('is palidrome');
+            } else {
+                console.log ('failure');
+            }
+        }
+
+
+
+
 
 })();
