@@ -417,7 +417,7 @@ myFunctionB();
     }
 
     /**
-     * Excercise 5: Compute running total of a list
+     * Excercise 6: check if word is a palindrome
      */
         pal = ['acer', 'kayak', 'madam', 'motor','redder', 'alula', 'elle', 'casa'];
 
@@ -438,8 +438,18 @@ myFunctionB();
             }
         }
 
+    /**
+     * Excercise 7:  three functions that compute the sum of the numbers in a list: using a for-loop,
+     * a while-loop and recursion
+     */
 
+    numbers = [32, 45, 10, 8, 12, 15];
+    var sum = 0;
 
-
+    for (i =0; i < numbers.length ; i ++){
+        sum += numbers[i];
+    }
+    console.log(sum);
+    return sum
 
 })();
