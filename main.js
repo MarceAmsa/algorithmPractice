@@ -434,7 +434,7 @@ myFunctionB();
             if (x === y) {
                 console.log ('is palidrome');
             } else {
-                console.log ('failure');
+                console.log ('is NOT');
             }
         }
 
@@ -443,13 +443,57 @@ myFunctionB();
      * a while-loop and recursion
      */
 
+
+
+    //I created 2 different arrays to test the functions
     numbers = [32, 45, 10, 8, 12, 15];
-    var sum = 0;
+    wNumbers = [34, 23, 75, 2, 8, 9];
 
-    for (i =0; i < numbers.length ; i ++){
-        sum += numbers[i];
+
+    var wsum = 0;// while sum
+    var sum = 0; //for sum
+    var rsum = 0;// recursive sum
+
+    document.getElementById("forFunction").addEventListener("click", sumNumbers);
+    function sumNumbers () {
+        for (i =0; i < numbers.length ; i ++){
+            sum += numbers[i];
+        }
+        console.log( "for loop sum: " + sum);
+        // return sum
+
+
     }
-    console.log(sum);
-    return sum
 
+    //Create the same SUM function but using a WHILE parameter
+    document.getElementById("whileFunction").addEventListener("click", WsumNumbers);
+
+    function WsumNumbers() {
+        i = 0;
+
+        while (i < wNumbers.length){    //while i is lower than the arrays length
+            wsum += wNumbers[i];
+            i ++;                       // without this the loop won't function properly
+        }
+        console.log("while loop sum: " + wsum);
+    }
+
+
+    //Using a recursive function, is calling a function within a function so you can determine the parameter
+    document.getElementById("recursiveFunction").addEventListener("click", matryoshka);
+
+    function matryoshka  () { //called it matryoshka because is the SUM function, wihtin a EVENT LISTENER function.
+        
+        function recursiveFunction(int) { //parameter is int
+            i = 0;
+            for (i =0; i < numbers.length ; i ++){
+                rsum += int[i]; // in this case the variable is an array element, could be from numbers or Wnumbers
+            }
+            console.log ("recursive loop: " + rsum);
+        }
+        recursiveFunction(wNumbers); //the parameter is an array
+
+    }
+
+    // console.log("wsum: " + wsum);
 })();
